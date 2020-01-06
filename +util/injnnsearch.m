@@ -1,4 +1,16 @@
 function rho = injnnsearch(Y, X)
+%% This function follows the convention used in MATLAB's knnsearch of the
+% the first parameter being the target and second the source. It finds an
+% injective map from X to Y such that X(rho(i)) corresponds to Y(i). Note
+% that rho(1) is set to 1 and rho(m) = n.
+% Inputs
+% X: m × d : list of m points in ?^d
+% Y: n × d : list of n points in ?^d
+% Outputs
+% rho: m × 1 list of (non-strictly) increasing integers
+% NOTE: This function is not really injective as rho is not _strictly_
+% increasing. That is, rho(i) == rho(i+1) is possible.
+
     m = size(X, 1);
     n = size(Y, 1);
     
@@ -32,7 +44,7 @@ function rho = injnnsearch(Y, X)
         if rho(r) < M(i) && rho(s) > M(i)
             unused(i) = false;
             rho(i) = M(i);
-            fprintf('(i, M(i) = (%d, %d)\n', i, M(i));
+            fprintf('(i, M(i)) = (%d, %d)\n', i, M(i));
         else
             break;
         end
