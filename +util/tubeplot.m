@@ -52,7 +52,7 @@ function [x,y,z]=tubeplot(curve,r,n,ct)
 
   %make nvec not parallel to dv(:,1)
   nvec=zeros(3,1);
-  [buf,idx]=min(abs(dv(:,1))); nvec(idx)=1;
+  [~,idx]=min(abs(dv(:,1))); nvec(idx)=1;
 
   xyz=repmat([0],[3,n+1,npoints+2]);
   
@@ -70,7 +70,7 @@ function [x,y,z]=tubeplot(curve,r,n,ct)
     xyz(:,:,k+1)=repmat(curve(:,k),[1,n+1])+...
         cfact.*repmat(r*nvec,[1,n+1])...
         +sfact.*repmat(r*convec,[1,n+1]);
-  end;
+  end
   
   %finally, cap the ends:
   xyz(:,:,1)=repmat(curve(:,1),[1,n+1]);
@@ -82,5 +82,5 @@ function [x,y,z]=tubeplot(curve,r,n,ct)
   z=squeeze(xyz(3,:,:));
   
   %... and plot:
-  if nargout<3, surf(x,y,z); end;
+  if nargout<3, surf(x,y,z); end
   

@@ -157,9 +157,9 @@ function [pt,dudt,fofthandle] = interparc(t,P,varargin)
 % Release date: 3/15/2010
 
 % unpack the arguments and check for errors
-if nargin < 3
+if nargin < 2
   error('ARCLENGTH:insufficientarguments', ...
-    'at least t, px, and py must be supplied')
+    'at least t, P must be supplied')
 end
 
 t = t(:);
